@@ -35,7 +35,7 @@ $(document).ready(function () {
             { data: 'pais' },
             { data: 'etnia' }
         ],
-        ordering: false
+        ordering: true
     });
 
     $('#alunos-tabela tbody').on('click', 'tr', function (evento) {
