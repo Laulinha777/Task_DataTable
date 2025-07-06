@@ -1,0 +1,146 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    padding: 2rem;
+    color: #212529;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+table.dataTable {
+    width: 70%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+table.dataTable thead {
+    background-color: #e6ecff;
+}
+
+table.dataTable thead th {
+    text-align: center !important;
+    color: #495057;
+    font-weight: 600;
+    vertical-align: middle;
+    padding: 12px 15px;
+}
+
+table.dataTable tbody td {
+    border-bottom: 1px solid #dee2e6;
+    text-align: center;
+    padding: 10px 15px;
+}
+
+td.details-control {
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+    color: #007bff;
+}
+
+tr.shown td.details-control {
+    color: #dc3545;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 6px 10px;
+    margin-bottom: 15px;
+}
+
+.dataTables_wrapper .dataTables_length select {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 4px 8px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    border: none;
+    border-radius: 5px;
+    background-color: #ffffff;
+    padding: 6px 12px;
+    margin: 2px;
+    color: #495057;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background-color: #b8582f;
+    color: white;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background-color: #dee2e6;
+}
+
+tr.shown + tr td {
+    background-color: #f9f9f9;
+    padding: 1rem 1.5rem;
+    text-align: left;
+}
+
+
+table.dataTable th:nth-child(1),
+table.dataTable td:nth-child(1) {
+    width: 40px; /* details-control */
+}
+
+table.dataTable th:nth-child(2),
+table.dataTable td:nth-child(2) {
+    width: 300px; /* ID column */
+}
+
+table.dataTable th:nth-child(3),
+table.dataTable td:nth-child(3) {
+    min-width: 200px; /* Nome */
+}
+
+table.dataTable th:nth-child(4),
+table.dataTable td:nth-child(4) {
+    min-width: 200px; /* E-mail */
+}
+
+table.dataTable th:nth-child(5),
+table.dataTable td:nth-child(5) {
+    min-width: 400px; /* Curso */
+}
+
+table.dataTable th:nth-child(6),
+table.dataTable td:nth-child(6) {
+    width: 100px; /* Ano-Graduação */
+}
+
+table.dataTable th:nth-child(7),
+table.dataTable td:nth-child(7) {
+    min-width: 200px; /* CPF */
+}
+
+table.dataTable th:nth-child(8),
+table.dataTable td:nth-child(8) {
+    min-width: 200px; /* Telefone */
+}
+
+table.dataTable th:nth-child(9),
+table.dataTable td:nth-child(9) {
+    min-width: 120px; /* Cidade */
+}
+
+table.dataTable th:nth-child(10),
+table.dataTable td:nth-child(10) {
+    width: 120px; /* País */
+}
+
+table.dataTable th:nth-child(11),
+table.dataTable td:nth-child(11) {
+    width: 200px; /* Etnia */
+}
