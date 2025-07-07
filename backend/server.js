@@ -5,6 +5,7 @@ const fs = require('fs');
 const app = express();
 const PORT = 3000;
 
+
 app.use(cors());
 
 let alunos = [];
@@ -43,6 +44,6 @@ app.get('/api/aluno', (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });

@@ -1,3 +1,42 @@
+function removerAcentos(strAccents) {
+    strAccents = strAccents.split(''); //vai transformar a string em um array de caracter
+    let strAccents_Out = [];//armazena os caracterees modificcados
+    let strAccents_Len = strAccents.length; // processa o tamnaho da array
+
+    let acentos = 'ÁÀÃÂáàãâÍÌíìÉÈÊéèêÓÒÕÔóòõôÚÙÛúùûçÇ';
+    let sem_acentos = 'AAAAaaaaIIiiEEEeeeOOOOooooUUUuuucC';
+
+    for (let x = 0; x < strAccents_Len; x++) {
+        let idx = acentos.indexOf(strAccents[x]);
+        strAccents_Out[x] = idx !== -1 ? sem_acentos.charAt(idx) : strAccents[x];
+    }
+
+    return strAccents_Out.join('');
+}
+
+// Ordenação personalizada para portugues
+jQuery.extend(jQuery.fn.dataTableExt.oSort, {
+   "portugues-pre": function (data) {
+    if (!data) return '';
+ 
+    let normalized = removerAcentos(data)
+                    .toLowerCase()
+                    .trim()
+                    .replace(/\s+/g, ' ')
+                    .replace(/[^\w\s]/g, ''); // Remove símbolos ocultos
+     
+    return normalized;
+},
+
+    "portugues-asc": function (a, b) {
+        return a < b ? -1 : a > b ? 1 : 0;
+    },
+    "portugues-desc": function (a, b) {
+        return a < b ? 1 : a > b ? -1 : 0;
+    }
+});
+
+
 function format(aluno) {
     return `
     <div>
@@ -13,10 +52,15 @@ $(document).ready(function () {
     let ultimaLinhaSelecionada = null;
 
     const tabela = $('#alunos-tabela').DataTable({
+
+        columnDefs: [
+            { type: 'portugues', targets: [2, 4, 8] } // nome, curso, cidade
+        ], 
         ajax: {
             url: 'http://localhost:3000/api/alunos',
             dataSrc: ''
         },
+        
         columns: [
             {
                 className: 'details-control',
@@ -39,7 +83,6 @@ $(document).ready(function () {
     });
 
     $('#alunos-tabela tbody').on('click', 'tr', function (evento) {
-        // Ignora se clicou no +
         if ($(evento.target).hasClass('details-control')) return;
 
         const index = tabela.row(this).index();
@@ -55,7 +98,6 @@ $(document).ready(function () {
         } else {
             $(this).toggleClass('selected');
             ultimaLinhaSelecionada = index;
-            //Apenas vai selecionar ou desselecionar a linha clicada
         }
     });
 
@@ -75,12 +117,11 @@ $(document).ready(function () {
             const alunoId = row.data().id;
 
             $.ajax({
-                url:`http://localhost:3000/api/aluno?id=${alunoId}`,
+                url: `http://localhost:3000/api/aluno?id=${alunoId}`,
                 method: 'GET',
                 success: function (alunoDetalhes) {
                     row.child(format(alunoDetalhes)).show();
                 },
-
                 error: function () {
                     row.child('<div>Erro ao carregar detalhes.</div>').show();
                 }
